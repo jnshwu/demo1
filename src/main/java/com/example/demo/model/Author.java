@@ -6,6 +6,7 @@ import java.util.Set;
 
 /**
  * Created by jinshiwu on 8/7/18.
+ * add something else
  */
 @Entity
 public class Author {
