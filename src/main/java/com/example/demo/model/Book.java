@@ -10,10 +10,10 @@ import java.util.Set;
 @Entity
 public class Book {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
-    private String isdn;
+    private String isbn;
     private String publisher;
 
     @ManyToMany
@@ -24,15 +24,15 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, String isdn, String publisher) {
+    public Book(String title, String isbn, String publisher) {
         this.title = title;
-        this.isdn = isdn;
+        this.isbn = isbn;
         this.publisher = publisher;
     }
 
-    public Book(String title, String isdn, String publisher, Set<Author> authors) {
+    public Book(String title, String isbn, String publisher, Set<Author> authors) {
         this.title = title;
-        this.isdn = isdn;
+        this.isbn = isbn;
         this.publisher = publisher;
         this.authors = authors;
     }
@@ -53,12 +53,12 @@ public class Book {
         this.title = title;
     }
 
-    public String getIsdn() {
-        return isdn;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setIsdn(String isdn) {
-        this.isdn = isdn;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getPublisher() {
@@ -75,5 +75,31 @@ public class Book {
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        return id != null ? id.equals(book.id) : book.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", authors=" + authors +
+                '}';
     }
 }
