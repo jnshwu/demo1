@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.model.Author;
 import com.example.demo.repositories.AuthorRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ public class AuthorController {
 
     @RequestMapping("/authors")
     public String getAuthors(Model model) {
+        authorRepository.save(new Author("jinshi", "Wu"));
         model.addAttribute("authors", authorRepository.findAll());
         return "authors";
     }
